@@ -58,7 +58,6 @@ class Funcoes {
             }
         }
 
-        die();
         $arrNew = $this->validaPlano($arr);
 
         $this->criaJson($arrNew, 'proposta.json');
