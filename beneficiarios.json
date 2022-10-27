@@ -1,0 +1,29 @@
+[
+    {
+        "dados": {
+            "idade": "18",
+            "nome": "Matheus",
+            "plano": "1"
+        },
+        "plano": "Bitix Customer Plano 1",
+        "faixa": "R$12"
+    },
+    {
+        "dados": {
+            "idade": "22",
+            "nome": "lurdinha",
+            "plano": "5"
+        },
+        "plano": "Bitix Customer Plano 5",
+        "faixa": "R$60"
+    },
+    {
+        "dados": {
+            "idade": "45",
+            "nome": "teste",
+            "plano": "3"
+        },
+        "plano": "Bitix Customer Plano 3",
+        "faixa": "R$50"
+    }
+]

@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "start": "php -S localhost:8010"
+    },
+    "config": {
+        "process-timeout": 0
+    }
+}
