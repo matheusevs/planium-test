@@ -8,11 +8,18 @@
     </head>
     <body>
         <div class="container">
-            <div class="row justify-content-center">
+
+        <?php
+
+            include "src/header.php";
+
+        ?> 
+
+            <div class="row justify-content-center p-5">
                 <form id="formQuantidade" method="post" action="src/preencher.php">
-                    <h1 class="display-4 text-center col">Planium</h1>
-                    <div class="form-group input-group">
-                        <label for="quantidade"></label>
+                    <h1 class="display-4 text-center col">Planium - Plano de Saúde</h1>
+                    <div class="form-group input-group pt-5">
+                        <label class="form-control" for="quantidade">Digite o número de beneficiários</label>
                         <input required="required" class="form-control" type="number" id="quantidade" name="quantidade">
                     </div>
                     <div id="botoes">

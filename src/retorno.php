@@ -30,7 +30,7 @@ class Funcoes {
                 
                 if($d['plano'] == $precos['codigo']){
 
-                    if($precos['minimo_vidas'] <= $qtd){
+                    if($qtd >= $precos['minimo_vidas']){
 
                         if($d['idade'] >= 0 && $d['idade'] <= 17){
                             array_push($arr, array(
@@ -58,14 +58,14 @@ class Funcoes {
             }
         }
 
-        $arrNew = $this->validaPlanoBeneficiario($arr);
-        $this->criaJson($arrNew, 'beneficiarios.json');
+        die();
+        $arrNew = $this->validaPlano($arr);
 
-        $arrProposta = $this->validaProposta($arrNew);
-
+        $this->criaJson($arrNew, 'proposta.json');
+        $this->montaArray($arrNew, $qtd);
     }
 
-    public function validaPlanoBeneficiario($arr){
+    public function validaPlano($arr){
         $json_data_planos = json_decode(file_get_contents('../tabelas/plans.json'));
         $data_planos = json_decode(json_encode($json_data_planos), true);
 
@@ -82,8 +82,21 @@ class Funcoes {
             
     }
 
-    public function validaProposta($arr){
-        
+    public function montaArray($arr, $qtd){
+
+        $newArr = [];
+
+        foreach($arr as $a){
+            array_push($newArr, array(
+                'quantidade' => $qtd,
+                'idade' => $a['dados']['idade'],
+                'nome' => $a['dados']['nome'],
+                'plano' => $a['plano']
+            ));
+        }
+       
+        $this->criaJson($newArr, 'beneficiarios.json');
+        header('Location: tabela.php');
     }
 
     public function criaJson($arr, $nomeArq){

@@ -1,7 +1,7 @@
 <?php 
 
-$qtd = $_POST['quantidade'];
-$json_data = json_decode(file_get_contents('../tabelas/plans.json'));
+    $qtd = $_POST['quantidade'];
+    $json_data = json_decode(file_get_contents('../tabelas/plans.json'));
 
 ?>
 
@@ -15,39 +15,49 @@ $json_data = json_decode(file_get_contents('../tabelas/plans.json'));
     </head>
     <body>
         <div class="container">
-            <h3 class="display-4 text-center col">Informe os dados dos <?php echo $qtd ?> benificiarios</h3>
+
+            <?php
+
+                include "header.php";
+
+            ?> 
+
+
+            <h3 class="p-5 display-4 text-center col">Informe os dados dos <?php echo $qtd ?> beneficiários</h3>
             <form id="testeprioca" action="retorno.php" method="POST">
-            <input type="text" hidden name="qtd" value="<?php echo $qtd ?>">
+                <input type="text" hidden name="qtd" value="<?php echo $qtd ?>">
 
-            <?php for($i = 0; $i < $qtd; $i++){ ?>
+                <?php for($i = 0; $i < $qtd; $i++){ ?>
+                    <section class="p-5">
+                        <h5>Beneficiário <?php echo $i+1 ?></h5>
+                        <div class="form-group input-group">
+                            <label for="Idade"></label>
+                            <input required="required" placeholder="Digite a idade" class="form-control" type="number" id="idade" name="idade_<?php echo $i ?>">
+                        </div>
+                        <div class="form-group input-group">
+                            <label for="nome"></label>
+                            <input required="required" placeholder="Digite seu nome" class="form-control" type="text" id="nome" name="nome_<?php echo $i ?>">
+                        </div>
 
-                <div class="form-group input-group">
-                    <label for="Idade">Idade</label>
-                    <input required="required" class="form-control" type="text" id="idade" name="idade_<?php echo $i ?>">
-                </div>
-                <div class="form-group input-group">
-                    <label for="nome">Nome</label>
-                    <input required="required" class="form-control" type="text" id="nome" name="nome_<?php echo $i ?>">
-                </div>
+                        <div class="form-group input-group">
+                            <label for="plano"></label>
+                            <select name="plano_<?php echo $i ?>" id="plano" class="form-control">
+                                <?php foreach($json_data as $key => $value){?>
+                                    
+                                <option value="<?php echo $value->codigo ?>">
+                                    <?php echo $value->nome; ?>
+                                </option>
 
-                <div class="form-group input-group">
-                    <label for="plano">Plano</label>
-                    <select name="plano_<?php echo $i ?>" id="plano" class="form-control">
-                        <?php foreach($json_data as $key => $value){?>
-                            
-                        <option value="<?php echo $value->codigo ?>">
-                            <?php echo $value->nome; ?>
-                        </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </section>
 
-                        <?php } ?>
-                    </select>
-                </div>
+                <?php } ?>
 
-            <?php } ?>
-
-            <div id="botoes">
-                <button id="botao" class="btn btn-custom btn-branco" type="submit" value="Enviar"">Enviar</button>
-            </div>   
+                    <div id="botoes" class="pb-5">
+                        <button id="botao" class="btn btn-primary btn-lg" type="submit" value="Enviar"">Enviar</button>
+                    </div>
             </form>
                         
         </div>
@@ -55,6 +65,5 @@ $json_data = json_decode(file_get_contents('../tabelas/plans.json'));
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="script.js"></script>
     </body>
 </html>
