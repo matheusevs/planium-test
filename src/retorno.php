@@ -57,6 +57,7 @@ class Funcoes {
                 }
             }
         }
+        die();
 
         $arrNew = $this->validaPlano($arr);
 
