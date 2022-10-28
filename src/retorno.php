@@ -23,6 +23,7 @@ class Funcoes {
 
         $arr = [];
         $arrNew = [];
+        $total = 0;
 
         foreach($dados as $d){
             
@@ -36,19 +37,19 @@ class Funcoes {
                             array_push($arr, array(
                                 'dados' => $d,
                                 'plano' => $precos['codigo'],
-                                'faixa' => 'R$' . $precos['faixa1'] 
+                                'faixa' => number_format($precos['faixa1'], 2, ",", ".")
                             ));
                         } else if($d['idade'] >= 18 && $d['idade'] <= 40){
                             array_push($arr, array(
                                 'dados' => $d,
                                 'plano' => $precos['codigo'],
-                                'faixa' => 'R$' . $precos['faixa2'] 
+                                'faixa' => number_format($precos['faixa2'], 2, ",", ".")
                             ));
                         } else if($d['idade'] > 40){
                             array_push($arr, array(
                                 'dados' => $d,
                                 'plano' => $precos['codigo'],
-                                'faixa' => 'R$' . $precos['faixa3'] 
+                                'faixa' => number_format($precos['faixa3'], 2, ",", ".")
                             ));
                         }
 
