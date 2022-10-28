@@ -39,18 +39,21 @@ class Funcoes {
                                 'plano' => $precos['codigo'],
                                 'faixa' => number_format($precos['faixa1'], 2, ",", ".")
                             ));
+                            $total += $precos['faixa1'];
                         } else if($d['idade'] >= 18 && $d['idade'] <= 40){
                             array_push($arr, array(
                                 'dados' => $d,
                                 'plano' => $precos['codigo'],
                                 'faixa' => number_format($precos['faixa2'], 2, ",", ".")
                             ));
+                            $total += $precos['faixa2'];
                         } else if($d['idade'] > 40){
                             array_push($arr, array(
                                 'dados' => $d,
                                 'plano' => $precos['codigo'],
                                 'faixa' => number_format($precos['faixa3'], 2, ",", ".")
                             ));
+                            $total += $precos['faixa3'];
                         }
 
                     }
@@ -59,8 +62,10 @@ class Funcoes {
             }
         }
 
+        array_push($arr, ['total' => number_format($total, 2, ",", ".")]);
+        
         $arrNew = $this->validaPlano($arr);
-
+        
         $this->criaJson($arrNew, 'proposta.json');
         $this->montaArray($arrNew, $qtd);
     }

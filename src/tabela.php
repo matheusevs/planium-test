@@ -37,15 +37,27 @@
                     $array = json_decode(json_encode($json), true);
 
                     foreach($array as $key => $value){
-                        echo '
+                        if($value['total']){
+                            echo '
                             <tr>
-                                <th>' .$key. '</th>
-                                <td>' .$value['dados']['idade']. '</td>
-                                <td>' .$value['dados']['nome']. '</td>
-                                <td>' .$value['plano']. '</td>
-                                <td>' .$value['faixa']. '</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Valor Total</td>
+                                <td>R$ ' .$value['total']. '</td>
                             </tr>
                         ';
+                        } else {
+                            echo '
+                                <tr>
+                                    <th>' .$key. '</th>
+                                    <td>' .$value['dados']['idade']. '</td>
+                                    <td>' .$value['dados']['nome']. '</td>
+                                    <td>' .$value['plano']. '</td>
+                                    <td>R$ ' .$value['faixa']. '</td>
+                                </tr>
+                            ';
+                        }
                     }
 
                 ?>
